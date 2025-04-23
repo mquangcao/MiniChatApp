@@ -1,9 +1,45 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.SDK", "MiniChatApp.SDK\MiniChatApp.SDK.csproj", "{29474502-07A9-4BD0-B252-F57624CF5E73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Infrastructure.InMemory", "MiniChatApp.Infrastructure.InMemory\MiniChatApp.Infrastructure.InMemory.csproj", "{C3E8C6AE-0193-4209-8725-1D935CD42337}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Infrastructure.InMemoryTests", "MiniChatApp.Infrastructure.InMemoryTests\MiniChatApp.Infrastructure.InMemoryTests.csproj", "{F9877255-0742-4A94-8069-5DD10950FF27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Server", "MiniChatApp.Server\MiniChatApp.Server.csproj", "{0FD49D5A-FB68-455E-9669-C70A3E1859E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Client", "MiniChatApp.Client\MiniChatApp.Client.csproj", "{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29474502-07A9-4BD0-B252-F57624CF5E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29474502-07A9-4BD0-B252-F57624CF5E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29474502-07A9-4BD0-B252-F57624CF5E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29474502-07A9-4BD0-B252-F57624CF5E73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E8C6AE-0193-4209-8725-1D935CD42337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E8C6AE-0193-4209-8725-1D935CD42337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E8C6AE-0193-4209-8725-1D935CD42337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E8C6AE-0193-4209-8725-1D935CD42337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9877255-0742-4A94-8069-5DD10950FF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9877255-0742-4A94-8069-5DD10950FF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9877255-0742-4A94-8069-5DD10950FF27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9877255-0742-4A94-8069-5DD10950FF27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD49D5A-FB68-455E-9669-C70A3E1859E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD49D5A-FB68-455E-9669-C70A3E1859E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD49D5A-FB68-455E-9669-C70A3E1859E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD49D5A-FB68-455E-9669-C70A3E1859E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
