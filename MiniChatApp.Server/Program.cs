@@ -1,12 +1,11 @@
-using Microsoft.Extensions.DependencyInjection;
-using MiniChatApp.Infrastructure.InMemory;
+using MiniChatApp.Infrastructure.MongoDb;
 using MiniChatApp.SDK.Repositories;
 using MiniChatApp.SDK.Services.ChatRoomManager;
-using MiniChatApp.SDK.Services.MessageReader;
 using MiniChatApp.Server.Factory;
-using MiniChatApp.Server.MessageReader;
 using MiniChatApp.Server.Models;
-using System.Runtime.InteropServices;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
 
 namespace MiniChatApp.Server
 {
@@ -14,6 +13,8 @@ namespace MiniChatApp.Server
     {
         public static void Main(string[] args)
         {
+            BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
+
             var builder = Host.CreateApplicationBuilder(args);
             builder.Services.AddHostedService<Worker>();
 
@@ -21,7 +22,13 @@ namespace MiniChatApp.Server
             builder.Services.AddSingleton<IReadMessageFactory, ReadMessageFactory>();
             builder.Services.AddSingleton<IChatCommandFactory, ChatCommandFactory>();
 
-            builder.Services.AddSingleton<IChatRoomRepository, InMemoryChatRoomRepository>();
+            builder.Services.AddSingleton(new MongoDbChatRoomOptions()
+            {
+                ConnectionString = builder.Configuration.GetConnectionString("MiniChatApp") ?? throw new InvalidOperationException("connection string?????"),
+                DatabaseName = builder.Configuration["ConnectionStrings:DatabaseName"]!
+            });
+
+            builder.Services.AddSingleton<IChatRoomRepository, MongoDbChatRoomRepository>();
             builder.Services.AddSingleton<IChatRoomManager, DefaultChatRoomManager>();
 
 

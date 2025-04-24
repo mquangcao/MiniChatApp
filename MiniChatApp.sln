@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Server", "MiniC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Client", "MiniChatApp.Client\MiniChatApp.Client.csproj", "{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniChatApp.Infrastructure.MongoDb", "MiniChatApp.Infrastructure.MongoDb\MiniChatApp.Infrastructure.MongoDb.csproj", "{D4DE4124-34C9-4CB9-8BD1-B4C66D28E0C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA251EF7-F89E-4856-83FA-08FD09FD0EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DE4124-34C9-4CB9-8BD1-B4C66D28E0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DE4124-34C9-4CB9-8BD1-B4C66D28E0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DE4124-34C9-4CB9-8BD1-B4C66D28E0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DE4124-34C9-4CB9-8BD1-B4C66D28E0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
