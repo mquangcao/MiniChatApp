@@ -1,5 +1,8 @@
 ﻿using MiniChatApp.SDK.Entities;
 using MiniChatApp.SDK.Repositories;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MiniChatApp.Infrastructure.MongoDb
@@ -9,6 +12,7 @@ namespace MiniChatApp.Infrastructure.MongoDb
         private readonly IMongoCollection<ChatRoom> _chatRoomCollection;
         public MongoDbChatRoomRepository(MongoDbChatRoomOptions options)
         {
+            BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
             var client = new MongoClient(options.ConnectionString);
             
             var database = client.GetDatabase(options.DatabaseName);
@@ -25,9 +29,11 @@ namespace MiniChatApp.Infrastructure.MongoDb
             await _chatRoomCollection.InsertOneAsync(chatRoom);
         }
 
-        public Task<ChatRoom?> GetChatRoomAsync(Guid chatRoomId)
+        public async Task<ChatRoom?> GetChatRoomAsync(Guid chatRoomId)
         {
-            throw new NotImplementedException();
+            return await _chatRoomCollection
+                .Find(cr => cr.Id == chatRoomId)
+                .FirstOrDefaultAsync();
         }
 
         public Task<List<ChatRoom>> GetChatRoomsJoinAsync(Guid userId)
