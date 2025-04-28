@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MiniChatApp.Infrastructure.InMemory\MiniChatApp.Infrastructure.InMemory.csproj" />
     <ProjectReference Include="..\MiniChatApp.Infrastructure.MongoDb\MiniChatApp.Infrastructure.MongoDb.csproj" />
     <ProjectReference Include="..\MiniChatApp.SDK\MiniChatApp.SDK.csproj" />
   </ItemGroup>

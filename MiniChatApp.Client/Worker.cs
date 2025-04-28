@@ -14,7 +14,7 @@ namespace MiniChatApp.Client
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var endPoint = new IPEndPoint(IPAddress.Loopback, 3008);
+            var endPoint = new IPEndPoint(IPAddress.Loopback, 3010);
             var clientSocket = new Socket(
                 endPoint.AddressFamily,
                 SocketType.Stream,
