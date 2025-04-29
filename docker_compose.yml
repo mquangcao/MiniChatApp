@@ -2,7 +2,10 @@ name: minichatapp.net
 
 services:
     app:
-        image: minichatapp/v2
+        build:
+            context: .
+            dockerfile: MiniChatApp.Server/Dockerfile
+        image: minichatapp/v3
         container_name: minichatapp-container
         ports: 
             - 3008:3008
