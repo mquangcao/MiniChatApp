@@ -1,8 +1,8 @@
 ﻿using MiniChatApp.SDK.Entities;
 using MiniChatApp.SDK.Repositories;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 
 namespace MiniChatApp.Infrastructure.MongoDb
@@ -17,7 +17,6 @@ namespace MiniChatApp.Infrastructure.MongoDb
             
             var database = client.GetDatabase(options.DatabaseName);
             _chatRoomCollection = database.GetCollection<ChatRoom>("ChatRooms");
-
         }
         public Task<bool> AddParticipantAsync(Guid chatRoomId, Guid userId)
         {
@@ -26,14 +25,45 @@ namespace MiniChatApp.Infrastructure.MongoDb
 
         public async Task CreateChatRoomAsync(ChatRoom chatRoom)
         {
-            await _chatRoomCollection.InsertOneAsync(chatRoom);
+            
+            try
+            {
+                await _chatRoomCollection.InsertOneAsync(chatRoom);
+            }
+            catch (MongoConnectionException ex)
+            {
+                throw new Exception("Không thể kết nối MongoDB", ex);
+            }
+            catch (TimeoutException ex)
+            {
+                throw new Exception("Truy vấn MongoDB quá lâu", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi không xác định khi truy vấn ChatRoom", ex);
+            }
         }
 
         public async Task<ChatRoom?> GetChatRoomAsync(Guid chatRoomId)
         {
-            return await _chatRoomCollection
-                .Find(cr => cr.Id == chatRoomId)
-                .FirstOrDefaultAsync();
+            try
+            {
+                return await _chatRoomCollection
+                    .Find(cr => cr.Id == chatRoomId)
+                    .FirstOrDefaultAsync();
+            }
+            catch (MongoConnectionException ex)
+            {
+                throw new Exception("Không thể kết nối MongoDB", ex);
+            }
+            catch (TimeoutException ex)
+            {
+                throw new Exception("Truy vấn MongoDB quá lâu", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi không xác định khi truy vấn ChatRoom", ex);
+            }
         }
 
         public Task<List<ChatRoom>> GetChatRoomsJoinAsync(Guid userId)

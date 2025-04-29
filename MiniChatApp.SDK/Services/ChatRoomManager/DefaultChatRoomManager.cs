@@ -13,15 +13,22 @@ public class DefaultChatRoomManager(IChatRoomRepository _chatRoomRepository) : I
 
     public async Task CreateChatRoomAsync(string name, Guid managerId)
     {
-        ChatRoom chatRoom = new()
+        try
         {
-            Id = Guid.NewGuid(),
-            Name = name,
-            ManagerId = managerId,
-            Participants = [managerId]
-        };
+            ChatRoom chatRoom = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                ManagerId = managerId,
+                Participants = [managerId]
+            };
 
-        await _chatRoomRepository.CreateChatRoomAsync(chatRoom);
+            await _chatRoomRepository.CreateChatRoomAsync(chatRoom);
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
     public Task<ChatRoom?> GetChatRoomAsync(Guid chatRoomId)

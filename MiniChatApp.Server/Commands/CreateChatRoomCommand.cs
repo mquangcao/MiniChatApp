@@ -18,7 +18,16 @@ namespace MiniChatApp.Server.Commands
                 return;
             }
 
-            await chatRoomManager.CreateChatRoomAsync(Args[0], Message.SenderId);
+            try
+            {
+                await chatRoomManager.CreateChatRoomAsync(Args[0], Message.SenderId);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Failed to create chat room: {RoomName}, {em}", Args[0], ex.Message);
+                logger.LogDebug(ex, "Failed to create chat room: {RoomName}, {ex}", Args[0], ex);
+                return;
+            }
             logger.LogInformation("Chat room created: {RoomName}", Args[0]);
         }
     }

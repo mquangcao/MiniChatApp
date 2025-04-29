@@ -3,10 +3,6 @@ using MiniChatApp.SDK.Repositories;
 using MiniChatApp.SDK.Services.ChatRoomManager;
 using MiniChatApp.Server.Factory;
 using MiniChatApp.Server.Models;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson;
-using MiniChatApp.Infrastructure.InMemory;
 
 namespace MiniChatApp.Server
 {
@@ -23,13 +19,13 @@ namespace MiniChatApp.Server
             builder.Services.AddSingleton<IReadMessageFactory, ReadMessageFactory>();
             builder.Services.AddSingleton<IChatCommandFactory, ChatCommandFactory>();
 
-            //builder.Services.AddSingleton(new MongoDbChatRoomOptions()
-            //{
-            //    ConnectionString = builder.Configuration.GetConnectionString("MiniChatApp") ?? throw new InvalidOperationException("connection string?????"),
-            //    DatabaseName = builder.Configuration["ConnectionStrings:DatabaseName"]!
-            //});
+            builder.Services.AddSingleton(new MongoDbChatRoomOptions()
+            {
+                ConnectionString = builder.Configuration.GetConnectionString("MiniChatApp") ?? throw new InvalidOperationException("connection string?????"),
+                DatabaseName = builder.Configuration["DatabaseName"]!
+            });
 
-            builder.Services.AddSingleton<IChatRoomRepository, InMemoryChatRoomRepository>();
+            builder.Services.AddSingleton<IChatRoomRepository, MongoDbChatRoomRepository>();
             builder.Services.AddSingleton<IChatRoomManager, DefaultChatRoomManager>();
 
 

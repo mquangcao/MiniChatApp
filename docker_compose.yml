@@ -1,0 +1,5 @@
+name: minichatapp.net
+
+services:
+    minichatapp:
+        image:
