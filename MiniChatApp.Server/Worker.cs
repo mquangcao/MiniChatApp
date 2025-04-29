@@ -15,15 +15,19 @@ public class Worker : BackgroundService
     private readonly IReadMessageFactory _messageReaderFactory;
     private readonly IChatCommandFactory _chatCommandFactory;
 
+
     public Worker(ILogger<Worker> logger,
         ChatServerOptions chatServerOptions,
         IReadMessageFactory messageReaderFactory,
-        IChatCommandFactory chatCommandFactory)
+        IChatCommandFactory chatCommandFactory,
+        IConfiguration configuration
+        )
     {
         _logger = logger;
         _chatServerOptions = chatServerOptions;
         _messageReaderFactory = messageReaderFactory;
         _chatCommandFactory = chatCommandFactory;
+        _logger.LogInformation(configuration.GetConnectionString("MiniChatApp"));
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
